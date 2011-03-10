@@ -1,0 +1,12 @@
+Lopez is a simple xboard/winboard-compatible chess engine in python.  At the moment it has no user interface, though it would not be difficult to add a command-line mode, but you can play agains the engine in winboard and pair it off against other engines.  It is a toy project, and will currently play a semi-interesting losing game against the Fairy-Max engine.
+
+Current status:
+ - Iterative Deepening Mini-Max search with alpha-beta pruning
+ - Greedy, simple heuristic  
+ - Naive board implementation
+ - Naive move generation strategy
+ - Only thinks on its own turn
+ - Poorly defined board interface; goal is to build a proper interface to allow multiple board implementations.
+ - See todo.txt for development notes
+
+It's written in python so I don't expect it to be master-level, is really just a personal sandbox for playing with some AI code.
