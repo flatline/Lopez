@@ -150,7 +150,7 @@ class Board:
         r - the piece's rank, 0-based index
         f - the piece's file, 0-based index"""
 
-        # todo: en-passant; refactor
+        # todo: refactor
         moves = []
         # forward, forward from home r
         if r > 1:
@@ -190,7 +190,7 @@ class Board:
         return moves
 
     def _get_pawn_moves_white(self, pc, r, f):
-        # todo: en-passant; refactor
+        # todo: refactor
         moves = []
         # forward, forward from home row
         if r < 6:

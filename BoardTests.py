@@ -374,7 +374,6 @@ def test_en_passant():
     assert(c.board[3][1] == 0)
     assert(c.board[2][1] == -1)
 
-    # todo - fix!
     print("\ten-passant against black")
     b = Board()
     b.turn = -1
@@ -390,7 +389,6 @@ def test_en_passant():
     assert(b.en_passant == 1)
 
     move = ((4, 2), (5, 1))
-    print b.get_moves()
     assert(move in b.get_moves())
     c = b.apply_move(move)
     assert(c.board[4][1] == 0)
@@ -403,7 +401,40 @@ def test_en_passant():
     assert(c.board[5][1] == 1)
 
     print("\ten-passant missed, white")
+    b.board = [[0, 0, 0, 0, 0, 0, 0, 999],
+               [0, 1, 0, 0, 0, 0, 0, 0],
+               [0, 0, 0, 0, 0, 1, 0, 0],
+               [-1, 0, -1, 0, 0, 0, 0, 0],
+               [0, 0, 0, 0, 0, 0, 0, 0],
+               [0, 0, 0, 0, 0, 0, -999, 0],
+               [0, 0, 0, 0, 0, 0, 0, 0],
+               [0, 0, 0, 0, 0, 0, 0, 0]]
+    b = b.apply_move(((1,1), (3,1)))
+    assert(b.en_passant == 1)
+    b = b.apply_move(((5,6),(5,5)))
+    assert(b.en_passant == 0)
+    b = b.apply_move(((0,7),(1,7)))
+    move = ((3, 2), (2, 1))
+    assert(move not in b.get_moves())
+
     print("\ten-passant missed, black")
+    b = Board()
+    b.turn = -1
+    b.board = [[0, 0, 0, 0, 0, 0, 0, 999],
+               [0, 1, 0, 0, 0, 0, 0, 0],
+               [0, 0, 0, 0, 0, 1, 0, 0],
+               [0, 0, 0, 0, 0, 0, 0, 0],
+               [1, 0, 1, 0, 0, 0, 0, 0],
+               [0, 0, 0, 0, 0, 0, -999, 0],
+               [0, -1, 0, 0, 0, 0, 0, 0],
+               [0, 0, 0, 0, 0, 0, 0, 0]]
+    b = b.apply_move(((6,1), (4,1)))
+    assert(b.en_passant == 1)
+    b = b.apply_move(((0,7),(1,7)))
+    assert(b.en_passant == 0)
+    b = b.apply_move(((5,6),(5,5)))
+    move = ((4, 2), (5, 1))
+    assert(move not in b.get_moves())
 
 def test_king_moves():
     # king can make any number of illegal moves by putting self
