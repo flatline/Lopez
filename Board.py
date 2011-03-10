@@ -332,12 +332,13 @@ class Board:
         result = []
         # holy crap we have to check a lot of stuff!
 
-        # todo: check that the rooks haven't actually been captured!
         if side == 1:
             back_rank = self.board[0]
 
             # white, queen side
-            if self.castle & 1 and not (back_rank[1] + back_rank[2] + back_rank[3]):
+            # note: must check that rook not captured
+            if self.castle & 1 and back_rank[0] == 5 and \
+                    not (back_rank[1] + back_rank[2] + back_rank[3]):
                 threatened = False
                 for move in self.get_opponent_moves():
                     if move[1] in [(0,0), (0,1), (0,2), (0,3), (0,4)]:
@@ -346,7 +347,7 @@ class Board:
                     result.append(((0,4),(0,2)))
 
             # white, king side
-            if self.castle & 2 and not (back_rank[5] + back_rank[6]):
+            if self.castle & 2 and back_rank[7] == 5 and not (back_rank[5] + back_rank[6]):
                 threatened = False
                 for move in self.get_opponent_moves():
                     if move[1] in [(0,4), (0,5), (0,6), (0,7)]:
@@ -356,7 +357,9 @@ class Board:
         else:
             back_rank = self.board[7]
             # black, queen side
-            if self.castle & 1 and not (back_rank[1] + back_rank[2] + back_rank[3]):
+            # note: must check that rook not captured
+            if self.castle & 1 and back_rank[0] == -5 and \
+                    not (back_rank[1] + back_rank[2] + back_rank[3]):
                 threatened = False
                 for move in self.get_opponent_moves():
                     if move[1] in [(7,0), (7,1), (7,2), (7,3), (7,4)]:
@@ -365,7 +368,7 @@ class Board:
                     result.append(((7,4),(7,2)))
 
             # black, king side
-            if self.castle & 2 and not (back_rank[5] + back_rank[6]):
+            if self.castle & 2 and back_rank[7] == -5 and not (back_rank[5] + back_rank[6]):
                 threatened = False
                 for move in self.get_opponent_moves():
                     if move[1] in [(7,4), (7,5), (7,6), (7,7)]:
