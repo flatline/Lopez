@@ -1,4 +1,4 @@
-Lopez is a simple xboard/winboard-compatible chess engine in python.  At the moment it has no user interface, though it would not be difficult to add a command-line mode, but you can play agains the engine in winboard and pair it off against other engines.  It is a toy project, and will currently play a semi-interesting losing game against the Fairy-Max engine.
+Lopez is a simple xboard/winboard-compatible chess engine in python.  At the moment it has no user interface, though it would not be difficult to add a command-line mode, but you can play against the engine in winboard and pair it off against other engines.  It is a toy project, and will currently play a semi-interesting losing game against the Fairy-Max engine.  It's written in python so I don't expect it to be master-level, is really just a personal sandbox for playing with some AI code.
 
 Current status:
  - Iterative Deepening Mini-Max search with alpha-beta pruning
@@ -9,4 +9,18 @@ Current status:
  - Poorly defined board interface; goal is to build a proper interface to allow multiple board implementations.
  - See todo.txt for development notes
 
-It's written in python so I don't expect it to be master-level, is really just a personal sandbox for playing with some AI code.
+To use Lopez with Winboard.exe, edit the winboard.ini settings in the %appdata% folder to include entries for the engine:
+
+/firstChessProgramNames={
+...
+lopez /fd="C:\Python27" /fcp='"./python.exe" c:\users\clay\src\lopez\Game.py'
+...
+}
+
+/secondChessProgramNames={
+...
+lopez /sd="C:\Python27" /scp='"./python.exe" c:\users\clay\src\lopez\Game.py'
+...
+}
+
+For more on winboard and xboard, visit http://www.gnu.org/software/xboard/

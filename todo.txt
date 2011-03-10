@@ -1,26 +1,17 @@
-2/20/11:
 Analyzer:
-	x ensure heuristic function for black vs. white
 	o clean up endgame utility function: determine win, lose, draw states
 	  (2/20 - some problems doing this, couldn't figure it out, gave up for tonight)
-    x refactor so the search depth is passed as a parameter counting down to 0.  This will
-	  allow for quiescense search, exploring positive-looking paths, etc.
-	- transposition table
-	- iterative deepening
+	- performance profiling and tuning on the analyzer and the board
 	- improved heuristics
-	- remove MoveWrapper on minimax calls
+	- remove MoveWrapper on minimax calls (?)
 
 Board:
-	x clean up current board tests
-	x pawn promotion
 	- order moves by anticipated utility
 		- consider partitioning move collections into capturing and non-capturing moves;
 		  chance of some weird edge cases when e.g. castling moves are analyzed for check 
 		  positions, can also probably improve efficiency when checking for threats not to 
 		  iterate over all moves.
-	o en-passant
-	- other weird chess rules
-
+	- other weird chess rules - three move draw, 50 move limit
 
 Game:
 	- parse time limit properly
